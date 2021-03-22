@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('articles-component', require('./components/Articles.vue').default);
 Vue.component('navbar-component', require('./components/NavBar.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

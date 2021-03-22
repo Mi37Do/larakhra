@@ -14,6 +14,9 @@
                 </form>
                 <button @click="clearForm()" class="btn btn-danger btn-block">Cancel</button>
                 <hr>
+                <nav aria-label="Page navigation example">
+                    <pagination :data="articles" @pagination-change-page="makePagination"></pagination>
+                </nav>
                 <div class="card mb-2" v-for="(article,index) in articles.data" v-bind:key="article.id">
                     <div class="card-header">{{article.id}} . {{article.title}}</div>
 
@@ -81,6 +84,12 @@
                     this.getArticles();});
                 }
 
+            },
+            makePagination(page = 1) {
+                axios.get('api/articles?page=' + page)
+                    .then(response => {
+                        this.articles = response.data;
+                    });
             },
             addArticle(){
                 if( this.edit === false){
